@@ -28,9 +28,9 @@ bind '"\e[D": backward-char'
 shopt -s cdable_vars
 
 # Source other dotfiles
-dotfiles=('.bash_aliases' '.bash_favourites')
-for file in $dotfiles; do
-  if [[ -f "~/$file" ]]; then
-    source "~/$file"
+DOTFILES=('.bash_aliases' '.bash_favourites')
+for file in "${DOTFILES[@]}"; do
+  if [[ -f "${HOME}/${file}" ]]; then
+    source "${HOME}/${file}"
   fi
 done
