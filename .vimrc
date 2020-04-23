@@ -1,8 +1,15 @@
+# Behaviour
+set expandtab
+set softtabstop=2
+set tabstop=2
+
+# Interface
+set cursorline
 set number
-syntax on
-set tabstop=4
-set softtabstop=4
 set showmatch
-set incsearch
+syntax on
+
+# Search
 set hlsearch
 set ignorecase
+set incsearch

@@ -1,0 +1,36 @@
+# Additional information on each command at: https://github.com/mrzool/bash-sensible
+
+# History
+PROMPT_COMMAND='history -a'
+export HISTFILESIZE=20000
+export HISTSIZE=10000
+shopt -s histappend
+shopt -s cmdhist
+export HISTIGNORE="cat:cd:clear:df:du:history:init:ll:ls:lsb_release:lsblk:man:ping:speedtest:tldr"
+
+# Prompt colour and format
+export PS1="\[\033[38;5;39m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;201m\]\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;39m\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]"
+PROMPT_DIRTRIM=2
+
+# Bash behaviour
+bind Space:magic-space
+bind "set mark-symlinked-directories on"
+shopt -s dirspell 2> /dev/null
+shopt -s cdspell 2> /dev/null
+
+## Incremental history behaviour (Arrow Keys)
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
+
+# Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
+shopt -s cdable_vars
+
+# Source other dotfiles
+dotfiles=('.bash_aliases' '.bash_favourites')
+for file in $dotfiles; do
+  if [[ -f "~/$file" ]]; then
+    source "~/$file"
+  fi
+done
