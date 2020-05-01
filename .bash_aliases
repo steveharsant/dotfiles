@@ -15,6 +15,9 @@ alias lg='ls -lah | grep'
 alias rcgrep='grep -rnw ./ -e '
 alias repos='grep -h ^deb /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
+# init
+alias init='sudo init'
+
 # Network
 alias pg='ping google.com'
 alias pgd='ping 8.8.8.8'
@@ -29,7 +32,7 @@ alias arp-scan='sudo arp-scan'
 alias powershell='sudo powershell'
 
 # Terraform
-alias tf='Terraform'
+alias tf='terraform'
 
 # Typo Correction
 alias ipconfig='ifconfig'
