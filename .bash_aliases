@@ -4,6 +4,7 @@ alias ll='ls -lh'
 alias rm='rm -f'
 
 # Docker
+alias docker='sudo docker'
 alias dk='sudo docker'
 alias dkc='sudo docker container'
 alias dkcls='sudo docker container list --all'
