@@ -24,6 +24,8 @@ alias pg='ping google.com'
 alias pgd='ping 8.8.8.8'
 alias xip='curl icanhazip.com'
 
+alias flushdns='sudo systemd-resolve --flush-caches'
+
 # Python
 alias py='python3'
 alias pip='pip3'
