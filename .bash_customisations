@@ -9,7 +9,13 @@ shopt -s cmdhist
 export HISTIGNORE="cat:cd:clear:df:du:history:init:ll:ls:lsb_release:lsblk:man:ping:speedtest:tldr"
 
 # Prompt colour and format
-export PS1="\[\033[38;5;39m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;201m\]\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;39m\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]"
+if [[ -z $SSH_CONNECTION ]]; then
+  export PS1="\[\033[38;5;39m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;201m\]\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;39m\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]"
+else
+  export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;171m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+
+fi
+
 PROMPT_DIRTRIM=2
 
 # Bash behaviour
@@ -27,10 +33,14 @@ bind '"\e[D": backward-char'
 # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
 shopt -s cdable_vars
 
+# Improved Docker Formatting. Uses as the format string in the --format argument
+export DOCKER_FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
+
 # Source other dotfiles
+script_location="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES=('.bash_aliases' '.bash_favourites')
 for file in "${DOTFILES[@]}"; do
-  if [[ -f "${HOME}/${file}" ]]; then
-    source "${HOME}/${file}"
+  if [[ -f "${script_location}/${file}" ]]; then
+    source "${script_location}/${file}"
   fi
 done

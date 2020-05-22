@@ -2,12 +2,14 @@
 alias top='htop'
 alias ll='ls -lh'
 alias rm='rm -f'
+alias ssh='sshrc'
 
 # Docker
 alias docker='sudo docker'
 alias dk='sudo docker'
 alias dkc='sudo docker container'
-alias dkcls='sudo docker container list --all'
+alias dkcls='sudo docker ps --all --format=\"$DOCKER_FORMAT\"'
+alias dkps='sudo docker container list'
 alias dki='sudo docker image'
 alias dkils='sudo docker image list'
 
@@ -47,10 +49,6 @@ alias vg='vagrant'
 
 # Volume
 alias vol='pactl set-sink-volume 0'
-
-# sshrc
-# Source .vimrc for sshrc script to ssh connections
-# export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 
 # Remove aliases for specific programs like cat/bat that are not installed on remote hosts
 # if [ "$HOSTNAME" != "steve-laptop" ]; then
