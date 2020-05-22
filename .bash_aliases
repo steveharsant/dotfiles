@@ -50,7 +50,7 @@ alias vg='vagrant'
 # Volume
 alias vol='pactl set-sink-volume 0'
 
-# Remove aliases for specific programs like cat/bat that are not installed on remote hosts
-# if [ "$HOSTNAME" != "steve-laptop" ]; then
-#     alias cat='cat'
-# fi
+# Remove aliases for specific programs like sshrc that are not installed on remote hosts
+if [[ -n $SSH_CONNECTION ]]; then
+    unalias ssh
+fi
