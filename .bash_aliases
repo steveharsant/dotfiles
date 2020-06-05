@@ -5,13 +5,14 @@ alias rm='rm -f'
 alias ssh='sshrc'
 
 # Docker
-alias docker='sudo docker'
 alias dk='sudo docker'
 alias dkc='sudo docker container'
 alias dkcls='sudo docker ps --all --format=\"$DOCKER_FORMAT\"'
-alias dkps='sudo docker container list'
+alias dkexec='sudo docker exec -it'
 alias dki='sudo docker image'
 alias dkils='sudo docker image list'
+alias dkps='sudo docker container list'
+alias docker='sudo docker'
 
 # Files & filesystem
 alias lg='ls -lah | grep'
