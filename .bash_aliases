@@ -25,7 +25,7 @@ alias init='sudo init'
 # Network
 alias pg='ping google.com'
 alias pgd='ping 8.8.8.8'
-alias xip='curl icanhazip.com'
+alias xip='curl https://api.ipify.org && echo '
 
 alias flushdns='sudo systemd-resolve --flush-caches'
 
