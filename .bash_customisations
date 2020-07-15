@@ -31,19 +31,18 @@ if [[ '/bin/bash' == "$SHELL" ]]; then
   bind '"\e[B": history-search-forward'
   bind '"\e[C": forward-char'
   bind '"\e[D": backward-char'
-fi
 
-# Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
-shopt -s cdable_vars
+  # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
+  shopt -s cdable_vars
+fi
 
 # Improved Docker Formatting. Uses as the format string in the --format argument
 export DOCKER_FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
 
 # Source other dotfiles
-script_location="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES=('.bash_aliases' '.bash_favourites')
 for file in "${DOTFILES[@]}"; do
-  if [[ -f "${script_location}/${file}" ]]; then
-    source "${script_location}/${file}"
+  if [[ -f "${HOME}/${file}" ]]; then
+    source "${HOME}/${file}"
   fi
 done
