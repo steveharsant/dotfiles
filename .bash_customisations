@@ -6,9 +6,14 @@ export HISTFILESIZE=20000
 export HISTSIZE=10000
 export HISTIGNORE="cat:cd:clear:df:du:history:init:ll:ls:lsb_release:lsblk:man:ping:speedtest:tldr"
 
+# Bash specific behaviour
 if [[ '/bin/bash' == "$SHELL" ]]; then
   shopt -s histappend
   shopt -s cmdhist
+  bind Space:magic-space
+  bind "set mark-symlinked-directories on"
+  shopt -s dirspell 2> /dev/null
+  shopt -s cdspell 2> /dev/null
 fi
 
 # Prompt colour and format
@@ -20,12 +25,6 @@ else
 fi
 
 PROMPT_DIRTRIM=2
-
-# Bash behaviour
-bind Space:magic-space
-bind "set mark-symlinked-directories on"
-shopt -s dirspell 2> /dev/null
-shopt -s cdspell 2> /dev/null
 
 ## Incremental history behaviour (Arrow Keys)
 bind '"\e[A": history-search-backward'
