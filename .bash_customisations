@@ -4,9 +4,12 @@
 PROMPT_COMMAND='history -a'
 export HISTFILESIZE=20000
 export HISTSIZE=10000
-shopt -s histappend
-shopt -s cmdhist
 export HISTIGNORE="cat:cd:clear:df:du:history:init:ll:ls:lsb_release:lsblk:man:ping:speedtest:tldr"
+
+if [[ '/bin/bash' == "$SHELL" ]]; then
+  shopt -s histappend
+  shopt -s cmdhist
+fi
 
 # Prompt colour and format
 if [[ -z $SSH_CONNECTION ]]; then
