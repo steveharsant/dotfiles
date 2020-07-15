@@ -33,7 +33,6 @@ if [[ '/bin/bash' == "$SHELL" ]]; then
   bind '"\e[D": backward-char'
 fi
 
-
 # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
 shopt -s cdable_vars
 
