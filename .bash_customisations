@@ -6,16 +6,6 @@ export HISTFILESIZE=20000
 export HISTSIZE=10000
 export HISTIGNORE="cat:cd:clear:df:du:history:init:ll:ls:lsb_release:lsblk:man:ping:speedtest:tldr"
 
-# Bash specific behaviour
-if [[ '/bin/bash' == "$SHELL" ]]; then
-  shopt -s histappend
-  shopt -s cmdhist
-  bind Space:magic-space
-  bind "set mark-symlinked-directories on"
-  shopt -s dirspell 2> /dev/null
-  shopt -s cdspell 2> /dev/null
-fi
-
 # Prompt colour and format
 if [[ -z $SSH_CONNECTION ]]; then
   export PS1="\[\033[38;5;39m\]\u\[$(tput sgr0)\]\[\033[38;5;7m\]@\[$(tput sgr0)\]\[\033[38;5;201m\]\h\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;39m\]\\$\[$(tput sgr0)\] \[$(tput sgr0)\]"
@@ -26,11 +16,23 @@ fi
 
 PROMPT_DIRTRIM=2
 
-## Incremental history behaviour (Arrow Keys)
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\e[C": forward-char'
-bind '"\e[D": backward-char'
+# Bash specific behaviour
+if [[ '/bin/bash' == "$SHELL" ]]; then
+  shopt -s histappend
+  shopt -s cmdhist
+
+  bind Space:magic-space
+  shopt -s dirspell 2> /dev/null
+  shopt -s cdspell 2> /dev/null
+  bind "set mark-symlinked-directories on"
+
+  ## Incremental history behaviour (Arrow Keys)
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+  bind '"\e[C": forward-char'
+  bind '"\e[D": backward-char'
+fi
+
 
 # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
 shopt -s cdable_vars
