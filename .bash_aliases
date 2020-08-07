@@ -41,6 +41,7 @@ alias powershell='sudo powershell'
 alias tf='terraform'
 
 # Typo Correction
+alias instsall='install'
 alias ipconfig='ifconfig'
 alias sudo="sudo "
 alias sudp='sudo'
