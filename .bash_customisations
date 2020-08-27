@@ -39,6 +39,14 @@ fi
 # Improved Docker Formatting. Uses as the format string in the --format argument
 export DOCKER_FORMAT="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n"
 
+# Enable Heroku cli autocomplete
+if command -v heroku &> /dev/null
+then
+    HEROKU_AC_BASH_SETUP_PATH=/home/"$USER"/.cache/heroku/autocomplete/bash_setup
+    test -f "$HEROKU_AC_BASH_SETUP_PATH"
+    source "$HEROKU_AC_BASH_SETUP_PATH";
+fi
+
 # Source other dotfiles
 DOTFILES=('.bash_aliases' '.bash_favourites')
 for file in "${DOTFILES[@]}"; do
