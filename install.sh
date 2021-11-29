@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC1090
 # shellcheck disable=SC2010
 
 # Installs dotfiles for the current user
@@ -11,3 +12,10 @@ for dotfile in $dotfiles; do
     echo "Installing $dotfile"
     ln -sf "$script_path/$dotfile" "$HOME/$dotfile"
 done
+
+cat <<EOL >> ~/.bashrc
+  # Add personal bash customisations, aliases and favourites
+  if [[ -f "${HOME}/.bash_customisations" ]]; then source "${HOME}/.bash_customisations"; fi
+EOL
+
+source ~/.bashrc
