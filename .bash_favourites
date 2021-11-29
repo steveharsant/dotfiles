@@ -1,4 +1,4 @@
 # Variables containing locations on disk to cd to
 
-export dev="$HOME/development"
+export cdd="$HOME/development"
 export downloads="$HOME/Downloads"
