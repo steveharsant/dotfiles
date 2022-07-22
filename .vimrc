@@ -1,9 +1,12 @@
+if has("syntax")
+  syntax on
+endif
+
 set expandtab
-set softtabstop=2
-set tabstop=2
-set number
-set showmatch
-syntax on
 set hlsearch
 set ignorecase
 set incsearch
+set number
+set showmatch
+set softtabstop=2
+set tabstop=2

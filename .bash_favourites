@@ -1,4 +1,5 @@
-# Variables containing locations on disk to cd to
+#!/usr/bin/env bash
 
+# Variables containing locations on disk to cd to
 export cdd="$HOME/development"
 export downloads="$HOME/Downloads"
