@@ -2,11 +2,12 @@
 
 #shellcheck disable=SC1090
 #shellcheck disable=SC2010
+#shellcheck disable=SC2207
 
 script_path="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 ### Bash ###
-dotfiles=( $( ls $script_path -a | grep bash ) )
+dotfiles=( $( ls "$script_path" -a | grep bash ) )
 for dotfile in "${dotfiles[@]}"; do
   source "$script_path/$dotfile"
 done
