@@ -2,6 +2,7 @@
 
 # PSReadLine preferences
 Set-PSReadLineKeyHandler -Key Tab -Function Complete
+Set-PSReadlineKeyHandler -Key ctrl+d -Function ViExit
 Set-PSReadLineOption -ShowToolTips
 Set-PSReadLineOption -BellStyle None
 
@@ -90,6 +91,10 @@ function Watch-Command ($command) {
 function ll { Get-ChildItem -Force $args }
 function find { Get-ChildItem -Path . -Recurse -ErrorAction SilentlyContinue -Force -Filter "*$args*" }
 function mkcd ($path) { New-Item -ItemType Directory -Path $path; Set-Location $path | Out-Null }
+function pg { ping google.com }
+function pgd { ping 8.8.8.8 }
+function seft { wsl seft $args } # https://github.com/steveharsant/seft
+function tldr { wsl tldr $args } # Alternative native package is nodejs. Install with `npm install tldr -g`
 function touch ($path) { New-Item -ItemType File -Path $path | Out-Null }
 function xip { (Invoke-WebRequest 'https://api.ipify.org').content }
 

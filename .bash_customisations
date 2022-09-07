@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2207
+
 # History
 PROMPT_COMMAND='history -a'
 export HISTFILESIZE=20000
@@ -36,4 +38,27 @@ if [[ '/bin/bash' == "$SHELL" ]]; then
 
   # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
   shopt -s cdable_vars
+fi
+
+# Debian derivative specific behaviour
+if [ -f "/etc/debian_version" ]; then
+
+  # Update only repositories specified
+  update-repo() {
+      for source in "$@"; do
+        sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/${source}" \
+          -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+      done
+  }
+
+  # Auto complete for above function
+  _ppa_lists(){
+    local cur
+    _init_completion || return
+    COMPREPLY=( $( find /etc/apt/sources.list.d/ -name "*$cur*.list" \
+      -exec basename {} \; 2> /dev/null ) )
+    return 0
+  } &&
+  complete -F _ppa_lists update-repo
+
 fi
