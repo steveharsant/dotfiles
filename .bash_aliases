@@ -42,6 +42,7 @@ alias xip='curl https://api.ipify.org && echo '
 alias pip='pip3'
 alias py='python3'
 alias tf='terraform'
+alias ts='tailscale'
 alias vg='vagrant'
 
 # sudo [command]

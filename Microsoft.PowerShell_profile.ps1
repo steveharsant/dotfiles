@@ -117,6 +117,7 @@ function dkix { docker.exe run -it $args }
 # Other applications
 function py { python.exe $args }
 function tf { terraform.exe $args }
+function ts { tailscale.exe $args }
 function vg { vagrant.exe $args }
 function vi { vim.bat $args }
 
