@@ -25,16 +25,16 @@ if [[ '/bin/bash' == "$SHELL" ]]; then
   shopt -s histappend
   shopt -s cmdhist
 
-  bind Space:magic-space
+  bind Space:magic-space > /dev/null 2>&1
   shopt -s dirspell 2> /dev/null
   shopt -s cdspell 2> /dev/null
   bind "set mark-symlinked-directories on"
 
   ## Incremental history behaviour (Arrow Keys)
-  bind '"\e[A": history-search-backward'
-  bind '"\e[B": history-search-forward'
-  bind '"\e[C": forward-char'
-  bind '"\e[D": backward-char'
+  bind '"\e[A": history-search-backward' > /dev/null 2>&1
+  bind '"\e[B": history-search-forward' > /dev/null 2>&1
+  bind '"\e[C": forward-char' > /dev/null 2>&1
+  bind '"\e[D": backward-char' > /dev/null 2>&1
 
   # Enable 'favourites' (variables in .bash_favourites storing paths to cd to)
   shopt -s cdable_vars
