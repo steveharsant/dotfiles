@@ -28,7 +28,7 @@ if [[ '/bin/bash' == "$SHELL" ]]; then
   bind Space:magic-space > /dev/null 2>&1
   shopt -s dirspell 2> /dev/null
   shopt -s cdspell 2> /dev/null
-  bind "set mark-symlinked-directories on"
+  bind "set mark-symlinked-directories on" > /dev/null 2>&1
 
   ## Incremental history behaviour (Arrow Keys)
   bind '"\e[A": history-search-backward' > /dev/null 2>&1
