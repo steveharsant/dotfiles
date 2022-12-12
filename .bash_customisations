@@ -62,3 +62,11 @@ if [ -f "/etc/debian_version" ]; then
   complete -F _ppa_lists update-repo
 
 fi
+
+# Helper Functions
+tldr () {
+  if command -v curl &> /dev/null; then curl "https://cheat.sh/tldr:$1"
+  elif command -v wget &> /dev/null; then wget -qO - "https://cheat.sh/tldr:$1"
+  else echo 'Needs either curl or wget to function'
+  fi
+}

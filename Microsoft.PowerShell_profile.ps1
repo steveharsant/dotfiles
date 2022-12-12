@@ -45,6 +45,11 @@ function Get-PersistentHistory ($head, $tail) {
 }; Remove-Item alias:history -Force; New-Alias history -Value Get-PersistentHistory
 
 
+function tldr ([Parameter(Position = 1)]$source = 'tldr', [Parameter(Position = 0)]$command) {
+  (Invoke-WebRequest -Uri "https://cheat.sh/$source`:$command").content
+}
+
+
 function Get-VmIpAddress {
   (Get-VM | Where-Object { $_.state -eq 'Running' } | Get-VMNetworkAdapter) |
   Where-Object { $_.ipAddresses -like '*172.*' -or $_.ipAddresses -like '*192.*' } |
@@ -94,7 +99,7 @@ function mkcd ($path) { New-Item -ItemType Directory -Path $path; Set-Location $
 function pg { ping google.com }
 function pgd { ping 8.8.8.8 }
 function seft { wsl seft $args } # https://github.com/steveharsant/seft
-function tldr { wsl tldr $args } # Alternative native package is nodejs. Install with `npm install tldr -g`
+# function tldr { wsl tldr $args } # Alternative native package is nodejs. Install with `npm install tldr -g`
 function touch ($path) { New-Item -ItemType File -Path $path | Out-Null }
 function xip { (Invoke-WebRequest 'https://api.ipify.org').content }
 
