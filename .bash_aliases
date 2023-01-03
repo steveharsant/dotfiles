@@ -14,6 +14,7 @@ done
 alias ll='ls -lah'
 alias rm='rm -f'
 alias clrlast='history -d -2'
+alias watch='watch ' # Allows for aliases to be passed to watch
 
 # Docker
 alias dk="docker"

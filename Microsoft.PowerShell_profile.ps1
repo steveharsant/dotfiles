@@ -38,7 +38,7 @@ function Get-PersistentHistory ($head, $tail) {
   if (![string]::IsNullOrEmpty($head) -and ![string]::IsNullOrEmpty($tail))
   { Write-Output 'Conflicting arguements passed. Pass either head or tail, no both.'; return }
   $historyFilePath = "C:\Users\$env:UserName\appdata\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt"
-  if ( !Test-Path -Path $historyFilePath ) { return }
+  if ( ! (Test-Path -Path $historyFilePath) ) { return }
   elseif ( ![string]::IsNullOrEmpty($head) ) { return Get-Content $historyFilePath | Select-Object -First $head }
   elseif ( ![string]::IsNullOrEmpty($tail) ) { return Get-Content $historyFilePath | Select-Object -Last $tail }
   else { return Get-Content $historyFilePath }
