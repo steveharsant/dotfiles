@@ -27,6 +27,7 @@ alias dkcx="docker exec -it"
 alias dki="docker image"
 alias dkils="docker image ls"
 alias dkix="docker run -it"
+function dkcl(){ : > "$(docker inspect --format='{{.LogPath}}' "$1")" ; }
 
 # Files & filesystem
 alias lg='ls -lah | grep'
