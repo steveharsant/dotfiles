@@ -154,6 +154,7 @@ function dkcip { docker.exe inspect --format '{{ .NetworkSettings.IPAddress }}' 
 function dkcll { docker.exe ps --format 'Name:         {{.Names}}\n└─Status:       {{.Status}}\n└─Container ID: {{.ID}}\n└─Image:        {{.Image}}\n└─Command:      {{.Command}}\n└─Ports:        {{.Ports}}\n└─Mounts:       {{.Mounts}}\n└─Networks:     {{.Networks}}\n└─Created:      {{.RunningFor}}\n' $args }
 function dkcls { docker.exe ps --format 'Name:         {{.Names}}\n└─Status:       {{.Status}}\n└─Container ID: {{.ID}}\n└─Image:        {{.Image}}\n└─Ports:        {{.Ports}}\n' $args }
 function dkclss { docker.exe ps --filter 'status=exited' --format 'Name:         {{.Names}}\n└─Status:       {{.Status}}\n└─Container ID: {{.ID}}\n└─Image:        {{.Image}}\n└─Ports:        {{.Ports}}\n' $args }
+function dkcon { docker.exe context use $args }
 function dkcx { docker.exe exec -it $args }
 function dki { docker.exe image $args }
 function dkils { docker.exe image ls $args }
