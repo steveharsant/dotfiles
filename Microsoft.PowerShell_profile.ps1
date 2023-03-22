@@ -140,6 +140,7 @@ function pg { ping google.com }
 function pgd { ping 8.8.8.8 }
 function py { python3 $args }
 function touch ($path) { New-Item -ItemType File -Path $path | Out-Null }
+function ts { tailscale $args }
 function xip { (Invoke-WebRequest 'https://api.ipify.org').content }
 
 # AWS
@@ -167,6 +168,7 @@ function Write-Highlight { Write-Host $args -ForegroundColor White -BackgroundCo
 function tf { terraform.exe $args }
 function vg { vagrant.exe $args }
 function vl { vault.exe $args }
+
 
 
 ###* Directory Shortcuts *###
