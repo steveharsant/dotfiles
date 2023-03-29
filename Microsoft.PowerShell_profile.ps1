@@ -40,6 +40,37 @@ function ConvertTo-Base64 {
   return [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($in))
 }
 
+function Get-HumanReadableChildItem() {
+  param( [Parameter(Position = 0)][string] $path = '.' )
+
+  $inObjects = Get-ChildItem $path
+  [System.Collections.ArrayList]$outObjects = @()
+
+  foreach ($object in $inObjects) {
+    $output = New-Object -TypeName psobject
+
+    if ($object.Mode -match '^.a.*') {
+      switch ($object.length) {
+        { $_ -lt 1kb } { $length = "$($object.Length)B" }
+        { $_ -lt 1mb } { $length = "$($object.Length / 1kb -as [int])K"; break }
+        { $_ -lt 1gb } { $length = "$($object.Length / 1mb -as [int])M"; break }
+        { $_ -lt 1tb } { $length = "$($object.Length / 1gb -as [int])G"; break }
+        { $_ -lt 1pb } { $length = "$($object.Length / 1tb -as [int])T"; break }
+        Default { $null }
+      }
+    } else { $length = $null }
+
+    $output | Add-Member -MemberType NoteProperty -Name 'Mode' -Value "$($object.Mode)  "
+    $output | Add-Member -MemberType NoteProperty -Name 'LastWriteTime' -Value "$($object.LastWriteTime)  "
+    $output | Add-Member -MemberType NoteProperty -Name 'Length' -Value "$length  "
+    $output | Add-Member -MemberType NoteProperty -Name 'Name' -Value "$($object.Name)  "
+    $outObjects.Add($output) | Out-Null
+  }
+
+  return $outObjects
+}
+
+New-Alias ll -Value Get-HumanReadableChildItem
 
 function Get-PersistentHistory {
   param(
