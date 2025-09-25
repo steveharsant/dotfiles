@@ -90,15 +90,3 @@ if [ -f "/etc/debian_version" ]; then
     return 0
   } && complete -F _ppa_lists update-repo
 fi
-
-
-
-
-
-
-
-
-
-
-
-
