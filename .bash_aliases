@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2015
+
 # Dynamically set aliases if the binary exists
-aliases=("top=htop" "ssh=sshrc asd")
+aliases=("top=htop" "ssh=sshrc")
 for a in "${aliases[@]}"; do
   [[ "$a" =~ ^(.*)=(.*)$ ]]
   root_command=$(echo "${BASH_REMATCH[2]}" | cut -d ' ' -f1)
@@ -10,11 +12,21 @@ for a in "${aliases[@]}"; do
   fi
 done
 
+# Colourise
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
 # General
 alias ll='ls -lah'
 alias rm='rm -f'
 alias clrlast='history -d -2'
 alias watch='watch ' # Allows for aliases to be passed to watch
+alias mj='while :; do xdotool mousemove_relative -- $(( $RANDOM % 3 - 1 )) $(( $RANDOM % 3 - 1 )) sleep 30; done'
 
 # Docker
 alias dk="docker"
@@ -27,7 +39,7 @@ alias dkcx="docker exec -it"
 alias dki="docker image"
 alias dkils="docker image ls"
 alias dkix="docker run -it"
-function dkcl(){ : > "$(docker inspect --format='{{.LogPath}}' "$1")" ; }
+function dkclr(){ : > "$(docker inspect --format='{{.LogPath}}' "$1")" ; }
 
 # Files & filesystem
 alias lg='ls -lah | grep'
@@ -41,9 +53,11 @@ alias pgd='ping 8.8.8.8'
 alias xip='curl https://api.ipify.org && echo '
 
 # Shortened binaries
+alias kc='kubectl'
 alias pip='pip3'
 alias py='python3'
 alias tf='terraform'
+alias tg='terragrunt'
 alias ts='tailscale'
 alias vg='vagrant'
 
