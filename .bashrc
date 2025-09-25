@@ -49,6 +49,7 @@ source_files=(
   "$HOME/.tokens"
   '/usr/share/bash-completion/bash_completion'
   '/usr/share/doc/fzf/examples/key-bindings.bash'
+  '/home/steve/dev/steveharsant/source-env/source-env.sh'
 )
 
 for file in "${source_files[@]}"; do
